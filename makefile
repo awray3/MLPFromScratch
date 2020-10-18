@@ -1,5 +1,10 @@
-build: main.cpp read.cpp 
-	g++ -o main main.cpp read.cpp 
+CXX=g++
+CXXFLAGS=-std=c++17 -pedantic
+
+SRC=$(wildcard *.cpp)
+
+all: $(SRC)
+	$(CXX) -o main $(SRC)
 	./main
 clean:
 	rm main
