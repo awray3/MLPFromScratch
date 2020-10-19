@@ -4,8 +4,11 @@
 #include <vector>
 
 namespace read {
-	void print_vec(std::vector<float> a, int num_outputs=0);
-	std::vector< std::vector<float> > readData(std::string filename);
+	void print_vec(std::vector<double> a, int num_outputs=0);
+	void readData(std::string filename,
+			std::vector<double>& x,
+			std::vector<double>& y,
+			std::vector<int>& targets);
 }
 
 

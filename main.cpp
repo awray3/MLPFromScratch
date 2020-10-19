@@ -10,27 +10,20 @@
 
 
 int main()
-{
+{ 
+	// holds the data
+	std::vector<double> x; 
+	std::vector<double> y;
+	std::vector<int> targets;
 
-	//std::vector< std::vector<float> > v = read::readData("data.txt");
-
-	//std::vector<float> x;
-	//std::vector<float> y;
-	//std::vector<int> targets;
-
-	//int i=0;
-
-	//// store values from v in x, y, and targets
-	//for (i=0; i < v.size(); ++i) {
-		//x.push_back(v[i][0]);
-		//y.push_back(v[i][1]);
-		//targets.push_back(v[i][2]);
-	//}
+	read::readData("data.txt", x, y, targets);
 	
-	Layer layer_1(4, 10);
+	read::print_vec(x, 5);
 
-	layer_1.dim();
-	layer_1.print_weights();
+	//Layer layer_1(4, 10);
+
+	//layer_1.dim();
+	//layer_1.print_weights();
 	
 	
 

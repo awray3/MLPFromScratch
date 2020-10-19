@@ -6,7 +6,7 @@
 
 namespace read
 { 
-	void print_vec(std::vector<float> a, int num_outputs = 0)
+	void print_vec(std::vector<double> a, int num_outputs = 0)
 	{
 		int i=0;
 		int stop_counter = num_outputs ? std::min(num_outputs, (int)a.size()) : a.size();
@@ -17,25 +17,30 @@ namespace read
 		}
 	}
 
-	std::vector< std::vector<float> > readData(std::string filename) { 
-		// read in the data.  
+	void readData(std::string filename,
+			std::vector<double>& x,
+			std::vector<double>& y,
+			std::vector<int>& targets
+			)
+	{ 
+
 		
 		std::ifstream in(filename); // create the input file stream object
 		std::string line; // a string variable that will hold a line
 
-		// a vector of a vector of floats. This will basically act like a
+		// a vector of a vector of doubles. This will basically act like a
 		// matrix.
-		std::vector< std::vector<float> > v;  
+		std::vector< std::vector<double> > v;  
 		int i = 0; // keeps track of the rows of v
 
 		// while loop over the lines of the input file
 		while (std::getline(in, line))
 		{
-			float value; // for the float being read in
+			double value; // for the double being read in
 
 			std::stringstream ss(line); // creates a stream out of the line
 
-			v.push_back(std::vector<float>()); // adds space to v
+			v.push_back(std::vector<double>()); // adds space to v
 
 			// loop reading values from the current line
 			while (ss >> value)
@@ -45,6 +50,18 @@ namespace read
 			++i;
 		}
 
-		return v;
+
+		x.reserve(v.size());
+		y.reserve(v.size());
+		targets.reserve(v.size());
+
+
+
+		// store values from v in x, y, and targets
+		for (i=0; i < v.size(); ++i) {
+			x.push_back(v[i][0]);
+			y.push_back(v[i][1]);
+			targets.push_back(v[i][2]);
+		}
 	}
 }
