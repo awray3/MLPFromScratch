@@ -6,10 +6,6 @@
 //#include <sstream>
 //#include <fstream>
 
-int getSingleIndex(int row, int col, int numCols)
-{
-	return (row * numCols) + col;
-}
 
 class Layer
 {
@@ -19,7 +15,7 @@ class Layer
 
 		// weights will be a dynamically allocated array of weights,
 		// which will be a matrix of size (m_numNodes, m_inputSize)
-		double *weights;
+		std::vector<double> weights;
 
 	public:
 		// constructor
@@ -29,18 +25,9 @@ class Layer
 		{
 			assert(m_numNodes > 0);
 			assert(m_inputSize > 0);
-				
-			// dynamically allocate a weight matrix
-			weights = new double[static_cast<std::size_t>(m_numNodes * m_inputSize)]{};
-			std::cout << "Weight array allocated." << '\n';
-		}
 
-		//desctructor
-		~Layer()
-		{
-			// free up the dynamically allocated memory
-			delete[] weights;
-			std::cout << "Weight array destroyed." << '\n';
+			// make the vector as long as needed.
+			weights.reserve(m_numNodes * m_inputSize);
 		}
 
 		void dim()
@@ -62,6 +49,11 @@ class Layer
 				}
 				std::cout << '\n';
 			}
+		}
+
+		int getSingleIndex(int row, int col, int numCols)
+		{
+			return (row * numCols) + col;
 		}
 
 };
