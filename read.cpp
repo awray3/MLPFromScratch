@@ -6,7 +6,7 @@
 
 namespace read
 { 
-	void print_vec(std::vector<double> a, int num_outputs = 0)
+	void printVector(std::vector<double> a, int num_outputs = 0)
 	{
 		int i=0;
 		int stop_counter = num_outputs ? std::min(num_outputs, (int)a.size()) : a.size();
@@ -51,6 +51,7 @@ namespace read
 		}
 
 
+		// reserve memory for x, y, and targets
 		x.reserve(v.size());
 		y.reserve(v.size());
 		targets.reserve(v.size());

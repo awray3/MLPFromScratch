@@ -1,4 +1,5 @@
 #include "layer.h"
+#include "linalg.h"
 
 Layer::Layer(int numNodes, int inputSize)
 	: m_numNodes{numNodes},

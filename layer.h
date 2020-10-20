@@ -18,19 +18,15 @@ class Layer
 		// constructor
 		Layer(int numNodes, int inputSize);
 
-		void print_weights();
+		double forward(std::vector<double>& inputVector);
+
+		void printWeights();
 
 		void dim()
 		{
 			std::cout << "Number of nodes: " << m_numNodes << '\n'; 
 			std::cout << "Input size: " << m_inputSize << '\n'; 
-		}
-
-		int getSingleIndex(int row, int col, int numCols)
-		{
-			return (row * numCols) + col;
-		}
-
+		} 
 }; 
 
 #endif
